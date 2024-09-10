@@ -32,5 +32,12 @@ movie_list = [
 def message():
     return HTMLResponse('<h1>¡Hola mundo!</h1>')
 @app.get('/movies', tags=['Movies'])
-def movies():
+def get_movies():
     return movie_list
+
+@app.get('/movies/{id}' , tags=['Movies'])
+def get_movies(id:int):
+    for item in movie_list:
+        if item['id'] == id:
+            return item
+    return []
